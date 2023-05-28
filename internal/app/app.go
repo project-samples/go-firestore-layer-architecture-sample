@@ -40,7 +40,7 @@ func NewApp(ctx context.Context, cfg Config) (*ApplicationContext, error) {
 
 	userType := reflect.TypeOf(model.User{})
 	userQuery := query.NewBuilder(userType)
-	userSearchBuilder := f.NewSearchBuilder(client, "users", userType, userQuery.BuildQuery, search.GetSort, "createTime", "updateTime")
+	userSearchBuilder := f.NewSearchBuilder(client, "users", userType, userQuery.BuildQuery, search.GetSort, "CreateTime", "UpdateTime")
 	userRepository := f.NewRepository(client, "users", userType, "CreateTime", "UpdateTime")
 	userService := service.NewUserService(userRepository)
 	userHandler := handler.NewUserHandler(userSearchBuilder.Search, userService, validator.Validate, logError)

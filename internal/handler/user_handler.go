@@ -26,8 +26,7 @@ type UserHandler struct {
 
 func NewUserHandler(search func(context.Context, interface{}, interface{}, int64, string) (string, error), service UserService, validate func(context.Context, interface{}) ([]core.ErrorMessage, error), logError func(context.Context, string, ...map[string]interface{})) *UserHandler {
 	filterType := reflect.TypeOf(UserFilter{})
-	paramIndex := s.BuildParamIndex(filterType)
-	filterIndex := s.FindFilterIndex(filterType)
+	paramIndex, filterIndex := s.BuildParams(filterType)
 	return &UserHandler{service: service, Validate: validate, LogError: logError, search: search, paramIndex: paramIndex, filterIndex: filterIndex}
 }
 
